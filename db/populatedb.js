@@ -5,10 +5,11 @@ const SQL = `
     user_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
-    username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    isMember BOOLEAN,
-    isAdmin BOOLEAN
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255),
+    google_id VARCHAR(255) UNIQUE,
+    isMember BOOLEAN DEFAULT FALSE,
+    isAdmin BOOLEAN DEFAULT FALSE
   );
 
   CREATE TABLE IF NOT EXISTS posts (
