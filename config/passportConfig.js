@@ -12,42 +12,56 @@ passport.use(
       callbackURL: "http://localhost:3000/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
-      console.log("profile:", profile);
+      try {
+        const {
+          rows: [existingUser],
+        } = await pool.query("SELECT * FROM users WHERE google_id = $1;", [profile.id]);
 
-      const {
-        rows: [user],
-      } = await pool.query(
-        "INSERT INTO users (first_name, last_name, username, password) VALUES ($1, $2, $3, $4) RETURNING *;",
-        [profile.name.givenName, profile.name.familyName, profile.displayName, "zozo"]
-      );
+        if (existingUser) {
+          return done(null, existingUser);
+        }
 
-      return done(null, user);
+        const {
+          rows: [newUser],
+        } = await pool.query(
+          "INSERT INTO users (first_name, last_name, username, google_id) VALUES ($1, $2, $3, $4) RETURNING *;",
+          [profile.name.givenName, profile.name.familyName, profile.emails[0].value, profile.id]
+        );
+        return done(null, newUser);
+      } catch (error) {
+        return done(error);
+      }
     }
   )
 );
 
-// passport.use(
-//   new LocalStrategy(async (username, password, done) => {
-//     try {
-//       const {
-//         rows: [user],
-//       } = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
-//       if (!user) {
-//         return done(null, false, { message: "Incorrect username or password" });
-//       }
+passport.use(
+  new LocalStrategy(async (username, password, done) => {
+    try {
+      const {
+        rows: [user],
+      } = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
 
-//       const match = await bcrypt.compare(password, user.password);
+      if (!user) {
+        return done(null, false, { message: "Incorrect username or password" });
+      }
 
-//       if (!match) {
-//         return done(null, false, { message: "Incorrect username or password" });
-//       }
+      if (user.google_id) {
+        return done(null, false, { message: "Please log in with google" });
+      }
 
-//       return done(null, user);
-//     } catch (error) {
-//       return done(error);
-//     }
-//   })
-// );
+      const match = await bcrypt.compare(password, user.password);
+
+      if (!match) {
+        return done(null, false, { message: "Incorrect username or password" });
+      }
+
+      return done(null, user);
+    } catch (error) {
+      return done(error);
+    }
+  })
+);
 
 passport.serializeUser((user, done) => {
   done(null, user.user_id);
