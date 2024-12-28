@@ -3,16 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('partials/global-styles') %>
     <title>Sign-up</title>
   </head>
   <body>
     <form method="post">
-      <input type="text" name="firstName" placeholder="first name" />
-      <input type="text" name="lastName" placeholder="lastName" />
+      <%- include('partials/errors') %>
+      <input type="text" name="firstName" placeholder="First name" maxlength="50" required />
+      <input type="text" name="lastName" placeholder="Last name" maxlength="50" required />
 
-      <input type="text" name="username" placeholder="username" />
-      <input type="password" name="password" placeholder="password" />
+      <input type="email" name="username" placeholder="Email" maxlength="255" required />
+      <input type="password" name="password" placeholder="Password" maxlength="255" required />
+      <input type="password" name="confirmPassword" placeholder="Confirm password" maxlength="255" required />
       <button>Submit</button>
     </form>
+    <a href="/auth/google">Log in with google</a>
   </body>
 </html>
