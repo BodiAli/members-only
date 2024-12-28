@@ -14,6 +14,7 @@ const app = express();
 
 app.set("view engine", "ejs");
 
+app.use(express.static("public"));
 app.use(flash());
 app.use(
   session({
@@ -32,8 +33,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
-  console.log("Current user:", req.user);
-
   next();
 });
 
@@ -45,3 +44,5 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Express app listening on port: ${port}!`);
 });
+
+// TODO: Implement authentication using local and google auth strategies.
