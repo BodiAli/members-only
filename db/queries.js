@@ -8,3 +8,8 @@ exports.createUser = async (firstName, lastName, username, password) => {
     password,
   ]);
 };
+
+exports.getUserByEmail = async (email) => {
+  const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [email]);
+  return rows;
+};
