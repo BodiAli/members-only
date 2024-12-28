@@ -3,18 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('partials/global-styles') %>
     <title>Home</title>
   </head>
   <body>
     <% if (currentUser) { %>
-    <h1>WELCOME <%= user.first_name + " " + user.last_name %></h1>
+    <h1>WELCOME <%= currentUser.first_name + " " + currentUser.last_name %></h1>
     <% } else { %>
-    <!-- <form action="/log-in" method="post">
-      <input type="text" name="username" placeholder="username" />
-      <input type="password" name="password" placeholder="password" />
-      <button>Submit</button>
-    </form> -->
-    <a href="/auth/google">Login with google</a>
+    <a href="/log-in">Login in</a>
+    <a href="/sign-up">Sign up</a>
     <% } %>
   </body>
 </html>
