@@ -8,6 +8,7 @@
   <body>
     <h1>Log in</h1>
     <form method="post">
+      <%- include('partials/errors') %>
       <input type="email" name="username" placeholder="Email" maxlength="255" required />
       <input type="password" name="password" placeholder="Password" maxlength="255" required />
       <button>Submit</button>
