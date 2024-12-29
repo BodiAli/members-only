@@ -8,9 +8,10 @@ exports.getHomePage = asyncHandler((req, res) => {
 exports.getProfilePage = [
   authenticationController.isAuthenticated,
   asyncHandler((req, res) => {
-    const messages = req.flash("info");
-    console.log(messages);
+    const alreadySignedInMessage = req.flash("info");
 
-    res.send(`(${req.user.first_name}) profile. <br /> <a href='/'>Home page</a>`);
+    res.render("profile", {
+      alreadySignedInMessage: alreadySignedInMessage.length > 0 ? alreadySignedInMessage : null,
+    });
   }),
 ];
