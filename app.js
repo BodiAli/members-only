@@ -15,7 +15,6 @@ const app = express();
 app.set("view engine", "ejs");
 
 app.use(express.static("public"));
-app.use(flash());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -28,6 +27,7 @@ app.use(
     cookie: { maxAge: 100000 },
   })
 );
+app.use(flash());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: true }));
 
