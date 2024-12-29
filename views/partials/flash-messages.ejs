@@ -1,0 +1,7 @@
+<% if (locals.alreadySignedInMessage) { %>
+<ul class="flash-messages">
+  <% alreadySignedInMessage.forEach(message => { %>
+  <li><%= message %></li>
+  <% }) %>
+</ul>
+<% } %>
