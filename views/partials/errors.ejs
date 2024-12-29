@@ -4,4 +4,8 @@
   <li><%= error.msg %></li>
   <% }) %>
 </ul>
+<% } %> <% if (locals.authenticationError) { %>
+<ul>
+  <li><%= authenticationError %></li>
+</ul>
 <% } %>
