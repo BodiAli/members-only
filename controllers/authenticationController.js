@@ -17,6 +17,7 @@ exports.isNotAuthenticated = (req, res, next) => {
   }
 
   req.flash("info", "You are already signed in.");
+
   return res.redirect("/profile");
 };
 
@@ -91,8 +92,38 @@ exports.getLogInForm = [
   },
 ];
 
-exports.authenticateWithLocal = passport.authenticate("local", {
-  successRedirect: "/profile",
-  failureRedirect: "/log-in",
-  failureFlash: true,
-});
+const validateLoginUser = [
+  body("username")
+    .trim()
+    .notEmpty()
+    .withMessage(`Email ${emptyErr}`)
+    .isEmail()
+    .withMessage(`Email ${isEmailErr}`),
+  body("password")
+    .trim()
+    .notEmpty()
+    .withMessage(`Password ${emptyErr}`)
+    .isLength({ min: 5 })
+    .withMessage(`Password ${passwordLengthErr}`),
+];
+
+exports.authenticateWithLocal = [
+  validateLoginUser,
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("log-in-form", { errors: errors.array() });
+    }
+
+    return passport.authenticate("local", (err, user, options) => {
+      if (err) return next(err);
+      if (!user) {
+        return res.render("log-in-form", { authenticationError: options.message });
+      }
+      return req.login(user, (error) => {
+        if (error) return next(error);
+        return res.redirect("/profile");
+      });
+    })(req, res);
+  },
+];
