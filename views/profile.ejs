@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('partials/global-styles') %>
+    <link rel="stylesheet" href="/styles/profile.css" />
+    <title>Profile</title>
+  </head>
+  <body>
+    <%- include('partials/flash-messages') %>
+    <h1>Welcome <%= currentUser.first_name %></h1>
+    <a href="/">Home page</a>
+  </body>
+</html>
