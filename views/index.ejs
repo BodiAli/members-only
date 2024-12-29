@@ -9,6 +9,8 @@
   <body>
     <% if (currentUser) { %>
     <h1>WELCOME <%= currentUser.first_name + " " + currentUser.last_name %></h1>
+    <a href="/log-in">Login in</a>
+    <a href="/sign-up">Sign up</a>
     <% } else { %>
     <a href="/log-in">Login in</a>
     <a href="/sign-up">Sign up</a>
