@@ -122,6 +122,12 @@ exports.authenticateWithLocal = [
       }
       return req.login(user, (error) => {
         if (error) return next(error);
+        if (req.body.rememberMe) {
+          const hour = 3600000;
+          req.session.cookie.maxAge = 14 * 24 * hour; // 2 weeks
+        } else {
+          req.session.cookie.expires = false;
+        }
         return res.redirect("/profile");
       });
     })(req, res);
