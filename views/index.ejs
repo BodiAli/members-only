@@ -4,16 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%- include('partials/global-styles') %>
-    <title>Home</title>
+    <link rel="stylesheet" href="/styles/index.css">
+    <title><%= title %> | Members Only</title>
   </head>
   <body>
-    <% if (currentUser) { %>
-    <h1>WELCOME <%= currentUser.first_name + " " + currentUser.last_name %></h1>
-    <a href="/log-in">Login in</a>
-    <a href="/sign-up">Sign up</a>
-    <% } else { %>
-    <a href="/log-in">Login in</a>
-    <a href="/sign-up">Sign up</a>
-    <% } %>
+    <%- include('partials/header') %>
+    <main>
+       <section class="user-hero">
+        <% if (locals.currentUser) { %>
+         <p>Welcome <a href="/profile"><%= currentUser.first_name %> <%= currentUser.last_name %></a></p>
+        <% } else { %>
+           <a href="/sign-up">Create an account</a>
+           <p>Already have an account? <a href="/log-in">Log in</a></p>
+        <% } %>
+       </section>
+      <% if (locals.allPosts.length > 0) { %>
+      <div class="posts-container">
+        <% allPosts.forEach(post => { %>
+        <div class="post">
+          <h2 class='post-author <%= !locals.currentUser ? 'hidden' : '' %>'><%= locals.currentUser ? post.author : 'You need to be a member to be able to see the author\'s name' %></h2>
+          <h3 class="post-title"><%= post.post_title %></h3>
+          <p class="post-text"><%= post.post_text %></p>
+          <p class="post-time"><%= post.post_added.toDateString() %>, <%= post.post_added.getHours() %>:<%= post.post_added.getMinutes() %>:<%= post.post_added.getSeconds() %></p>
+        </div>
+        <% }) %>
+      </div>
+      <div class="pagination">
+        <% if (page > 1) { %>
+         <a href="?page=<%= page - 1 %>">Previous</a>
+        <% } %>
+        <% for( let i = 1; i <= totalPages; i++ ) { %>
+          <a href="?page=<%= i %>" class="<%= i === page ? 'active' : '' %>"><%= i %></a>
+        <% } %>
+        <% if (page < totalPages) { %>
+         <a href="?page=<%= page + 1 %>">Next</a>
+        <% } %>
+      </div>
+      <% } %>
+
+    </main>
   </body>
 </html>
