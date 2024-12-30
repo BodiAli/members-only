@@ -1,0 +1,63 @@
+main {
+  padding: 1rem;
+}
+
+.user-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  background-color: #bc908f;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: inset 0 0 10px #865d5d;
+}
+
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.post {
+  background-color: #ffe4e3;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.post-author {
+  font-size: 1.2rem;
+}
+
+.post-title {
+  font-size: 1.1rem;
+}
+
+.post-time {
+  align-self: end;
+}
+
+.pagination {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination a {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #007bff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.pagination a.active {
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+}
