@@ -26,6 +26,8 @@ exports.authenticateWithGoogle = passport.authenticate("google", { scope: ["prof
 exports.googleRedirect = [
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
+    const hour = 3600000;
+    req.session.cookie.maxAge = 14 * 24 * hour; // 2 weeks
     res.redirect("/profile");
   },
 ];
