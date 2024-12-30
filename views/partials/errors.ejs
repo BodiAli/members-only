@@ -1,11 +1,11 @@
 <% if (locals.errors) { %>
-<ul>
+<ul class="validation-error">
   <% errors.forEach(error => { %>
   <li><%= error.msg %></li>
   <% }) %>
 </ul>
 <% } %> <% if (locals.authenticationError) { %>
-<ul>
+<ul class="authentication-error">
   <li><%= authenticationError %></li>
 </ul>
 <% } %>
