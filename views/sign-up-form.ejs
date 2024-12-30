@@ -4,19 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%- include('partials/global-styles') %>
+    <link rel="stylesheet" href="/styles/sign-up.css" />
     <title>Sign-up</title>
   </head>
   <body>
-    <form method="post">
-      <%- include('partials/errors') %>
-      <input type="text" name="firstName" placeholder="First name" maxlength="50" required />
-      <input type="text" name="lastName" placeholder="Last name" maxlength="50" required />
-
-      <input type="email" name="username" placeholder="Email" maxlength="255" required />
-      <input type="password" name="password" placeholder="Password" maxlength="255" required />
-      <input type="password" name="confirmPassword" placeholder="Confirm password" maxlength="255" required />
-      <button>Submit</button>
-    </form>
-    <a href="/auth/google">Log in with google</a>
+    <%- include('partials/header') %>
+    <main>
+      <section class="form-hero">
+        <h2>Sign up for free</h2>
+        <p>Or <a href="/log-in">sign in to your existing account</a></p>
+      </section>
+      <form method="post">
+        <%- include('partials/errors') %>
+        <label>
+          First name
+          <input type="text" name="firstName" maxlength="50" required />
+        </label>
+        <label>
+          Last name
+          <input type="text" name="lastName" maxlength="50" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="username" maxlength="255" required />
+        </label>
+        <label>
+          Password
+          <input type="password" name="password" maxlength="255" required />
+        </label>
+        <label>
+          Password confirmation
+          <input type="password" name="confirmPassword" maxlength="255" required />
+        </label>
+        <button>Sign up</button>
+      </form>
+      <hr />
+      <section class="google-section">
+        <p>Or continue with</p>
+        <a href="/auth/google" class="google-btn"
+          ><img src="/images/google-icon.png" alt="Continue with google"
+        /></a>
+      </section>
+    </main>
   </body>
 </html>
