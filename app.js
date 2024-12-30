@@ -7,6 +7,7 @@ const PgSession = require("connect-pg-simple")(session);
 const pool = require("./db/pool");
 const indexRouter = require("./routes/indexRouter");
 const authenticationRouter = require("./routes/authenticationRouter");
+const profileRouter = require("./routes/profileRouter");
 
 require("./config/passportConfig");
 
@@ -24,7 +25,6 @@ app.use(
       pool,
       createTableIfMissing: true,
     }),
-    cookie: { maxAge: 100000 },
   })
 );
 app.use(flash());
@@ -36,8 +36,15 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  res.locals.currentPath = req.path;
+
+  next();
+});
+
 app.use("/", indexRouter);
 app.use("/", authenticationRouter);
+app.use("/profile", profileRouter);
 
 const port = process.env.PORT || 3000;
 
