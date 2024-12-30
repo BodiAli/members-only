@@ -17,7 +17,7 @@ const SQL = `
     post_title VARCHAR(255),
     post_text TEXT,
     post_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP(0),
-    posts_user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
+    post_user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
   );
 `;
 
