@@ -3,20 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Log-in</title>
+    <%- include('partials/global-styles') %>
+    <link rel="stylesheet" href="/styles/log-in.css" />
+    <title>Sign in | Members Only</title>
   </head>
   <body>
-    <h1>Log in</h1>
-    <form method="post">
-      <%- include('partials/errors') %>
-      <input type="email" name="username" placeholder="Email" maxlength="255" required />
-      <input type="password" name="password" placeholder="Password" maxlength="255" required />
-      <label>
-        <input type="checkbox" name="rememberMe" />
-        Remember Me
-      </label>
-      <button>Submit</button>
-    </form>
-    <a href="/auth/google">Log in with google</a>
+    <%- include('partials/header') %>
+    <main>
+      <section class="form-hero">
+        <h2>Sign in to your account</h2>
+        <p>Or <a href="/sign-up">sign up for a new account</a></p>
+      </section>
+      <form method="post">
+        <%- include('partials/errors') %>
+        <label>
+          Email
+          <input type="email" name="username" maxlength="255" required />
+        </label>
+        <label>
+          Password
+          <input type="password" name="password" maxlength="255" required />
+        </label>
+        <div class="remember-me">
+          <label>
+            <input type="checkbox" name="rememberMe" />
+            Remember me
+          </label>
+        </div>
+        <button>Sign in</button>
+      </form>
+      <hr />
+      <section class="google-section">
+        <p>Or continue with</p>
+        <a href="/auth/google" class="google-btn">
+          <img src="/images/google-icon.png" alt="Continue with google" />
+        </a>
+      </section>
+    </main>
   </body>
 </html>
