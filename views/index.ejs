@@ -22,10 +22,12 @@
       <div class="posts-container">
         <% allPosts.forEach(post => { %>
         <div class="post">
-          <h2 class='post-author <%= !locals.currentUser ? 'hidden' : '' %>'><%= locals.currentUser ? post.author : 'You need to be a member to be able to see the author\'s name' %></h2>
+          <h2 class='post-author'><%= locals.currentUser ? post.author : 'You need to be a member to be able to see the author\'s name and date of each message' %></h2>
           <h3 class="post-title"><%= post.post_title %></h3>
           <p class="post-text"><%= post.post_text %></p>
-          <p class="post-time"><%= post.post_added.toDateString() %>, <%= post.post_added.getHours() %>:<%= post.post_added.getMinutes() %>:<%= post.post_added.getSeconds() %></p>
+          <% if (locals.currentUser) { %>
+            <p class="post-time"><%= post.post_added.toDateString() %>, <%= post.post_added.getHours() %>:<%= post.post_added.getMinutes() %>:<%= post.post_added.getSeconds() %></p>
+          <% } %>
         </div>
         <% }) %>
       </div>
