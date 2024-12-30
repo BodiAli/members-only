@@ -11,6 +11,10 @@
       <%- include('partials/errors') %>
       <input type="email" name="username" placeholder="Email" maxlength="255" required />
       <input type="password" name="password" placeholder="Password" maxlength="255" required />
+      <label>
+        <input type="checkbox" name="rememberMe" />
+        Remember Me
+      </label>
       <button>Submit</button>
     </form>
     <a href="/auth/google">Log in with google</a>
