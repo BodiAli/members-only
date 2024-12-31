@@ -8,6 +8,8 @@ const pool = require("./db/pool");
 const indexRouter = require("./routes/indexRouter");
 const authenticationRouter = require("./routes/authenticationRouter");
 const profileRouter = require("./routes/profileRouter");
+const memberShipRouter = require("./routes/memberShipRouter");
+const postsRouter = require("./routes/postsRouter");
 
 require("./config/passportConfig");
 
@@ -44,7 +46,9 @@ app.use((req, res, next) => {
 
 app.use("/", indexRouter);
 app.use("/", authenticationRouter);
+app.use("/", memberShipRouter);
 app.use("/profile", profileRouter);
+app.use("/post", postsRouter);
 
 const port = process.env.PORT || 3000;
 
