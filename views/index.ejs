@@ -5,11 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%- include('partials/global-styles') %>
     <link rel="stylesheet" href="/styles/index.css">
-    <title><%= title %> | Members Only</title>
+    <title>Home | Members Only</title>
   </head>
   <body>
     <%- include('partials/header') %>
     <main>
+      
+      <section class="member-ship">
+        <% if (!locals.currentUser?.ismember) { %>
+          <a href="/member">Become a member</a>
+        <% } else { %>
+          <p>You are a member!</p>
+          <% } %>
+        <% if (!locals.currentUser?.isadmin) { %>
+          <a href="/admin">Become an admin</a>
+        <% } else { %>
+          <p>You are an admin!</p>
+        <% } %>
+      </section>
        <section class="user-hero">
         <% if (locals.currentUser) { %>
          <p>Welcome <a href="/profile"><%= currentUser.first_name %> <%= currentUser.last_name %></a></p>
@@ -22,10 +35,15 @@
       <div class="posts-container">
         <% allPosts.forEach(post => { %>
         <div class="post">
-          <h2 class='post-author'><%= locals.currentUser ? post.author : 'You need to be a member to be able to see the author\'s name and date of each message' %></h2>
+          <% if (locals.currentUser?.isadmin) { %>
+           <form class="delete-post" action="/post/<%= post.post_id %>/delete" method="post">
+            <button type="submit">Delete</button>
+           </form>
+          <% } %>
+          <h2 class='post-author'><%= locals.currentUser?.ismember ? post.author : 'You need to be a member to be able to see the author\'s name and date of each message' %></h2>
           <h3 class="post-title"><%= post.post_title %></h3>
           <p class="post-text"><%= post.post_text %></p>
-          <% if (locals.currentUser) { %>
+          <% if (locals.currentUser?.ismember) { %>
             <p class="post-time"><%= post.post_added.toDateString() %>, <%= post.post_added.getHours() %>:<%= post.post_added.getMinutes() %>:<%= post.post_added.getSeconds() %></p>
           <% } %>
         </div>
