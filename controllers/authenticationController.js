@@ -4,6 +4,20 @@ const passport = require("passport");
 const bcrypt = require("bcrypt");
 const db = require("../db/queries");
 
+exports.isMember = (req, res, next) => {
+  if (req.user.ismember) {
+    return res.redirect("/");
+  }
+  return next();
+};
+
+exports.isAdmin = (req, res, next) => {
+  if (req.user.isadmin) {
+    return res.redirect("/");
+  }
+  return next();
+};
+
 exports.isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
