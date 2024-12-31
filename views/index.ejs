@@ -9,8 +9,8 @@
   </head>
   <body>
     <%- include('partials/header') %>
+    <%- include('partials/flash-messages') %>
     <main>
-      
       <section class="member-ship">
         <% if (!locals.currentUser?.ismember) { %>
           <a href="/member">Become a member</a>
