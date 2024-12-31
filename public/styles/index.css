@@ -102,3 +102,7 @@ main {
   background-color: #007bff;
   color: white;
 }
+
+.no-posts {
+  text-align: center;
+}
