@@ -6,6 +6,7 @@ const db = require("../db/queries");
 
 exports.isMember = (req, res, next) => {
   if (req.user.ismember) {
+    req.flash("info", "You are already a member.");
     return res.redirect("/");
   }
   return next();
@@ -13,6 +14,7 @@ exports.isMember = (req, res, next) => {
 
 exports.isAdmin = (req, res, next) => {
   if (req.user.isadmin) {
+    req.flash("info", "You are already an admin.");
     return res.redirect("/");
   }
   return next();
