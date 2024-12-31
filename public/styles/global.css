@@ -40,3 +40,26 @@ header > h1 {
   position: absolute;
   bottom: -25%;
 }
+
+.flash-messages {
+  animation: fade-out 3000ms 2000ms ease-in-out 1 forwards;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: gray;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: block;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    display: block;
+  }
+
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
