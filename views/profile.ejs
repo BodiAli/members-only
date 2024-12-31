@@ -8,6 +8,7 @@
     <title><%= currentUser.first_name %> | Profile</title>
   </head>
   <body>
+    <%- include('partials/header') %>
     <%- include('partials/flash-messages') %>
     <h1>Welcome <%= currentUser.first_name %></h1>
     <a href="/">Home page</a>
