@@ -10,5 +10,7 @@ exports.getHomePage = asyncHandler(async (req, res) => {
   const totalPosts = await db.getPostCount();
   const totalPages = Math.ceil(totalPosts / limit);
 
-  res.render("index", { title: "Home", allPosts, page, totalPages });
+  console.log(req.user);
+
+  res.render("index", { allPosts, page, totalPages });
 });
