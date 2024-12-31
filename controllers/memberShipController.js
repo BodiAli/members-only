@@ -64,3 +64,15 @@ exports.updateAdmin = [
     return res.redirect("/");
   }),
 ];
+
+exports.removeMemberStatus = asyncHandler(async (req, res) => {
+  await db.removeMemberStatus(req.user.user_id);
+
+  res.redirect("/profile");
+});
+
+exports.removeAdminStatus = asyncHandler(async (req, res) => {
+  await db.removeAdminStatus(req.user.user_id);
+
+  res.redirect("/profile");
+});
