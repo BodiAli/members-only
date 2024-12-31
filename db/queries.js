@@ -43,3 +43,11 @@ exports.updateAdmin = async (userId) => {
 exports.deletePost = async (postId) => {
   await pool.query("DELETE FROM posts WHERE post_id = $1", [postId]);
 };
+
+exports.removeMemberStatus = async (userId) => {
+  await pool.query("UPDATE users SET ismember = false WHERE user_id = $1", [userId]);
+};
+
+exports.removeAdminStatus = async (userId) => {
+  await pool.query("UPDATE users SET isadmin = false WHERE user_id = $1", [userId]);
+};
