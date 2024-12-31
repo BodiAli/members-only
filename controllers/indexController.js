@@ -9,8 +9,14 @@ exports.getHomePage = asyncHandler(async (req, res) => {
   const allPosts = await db.getAllPosts(limit, offset);
   const totalPosts = await db.getPostCount();
   const totalPages = Math.ceil(totalPosts / limit);
+  const memberShipMessage = req.flash("info");
 
   console.log(req.user);
 
-  res.render("index", { allPosts, page, totalPages });
+  res.render("index", {
+    allPosts,
+    page,
+    totalPages,
+    flashMessages: memberShipMessage.length > 0 ? memberShipMessage : null,
+  });
 });
