@@ -1,0 +1,35 @@
+main {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+aside {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.profile-name {
+  font-size: 2rem;
+  font-family: serif;
+}
+
+.profile-username > span {
+  font-weight: 500;
+}
+
+.profile-membership {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.profile-membership > p {
+  font-size: 1.2rem;
+  flex: 1 0 auto;
+}
+
+.profile-membership > a {
+  color: black;
+}
