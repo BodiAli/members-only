@@ -36,7 +36,7 @@
         <% allPosts.forEach(post => { %>
         <div class="post">
           <% if (locals.currentUser?.isadmin) { %>
-           <form class="delete-post" action="/post/<%= post.post_id %>/delete" method="post">
+           <form class="delete-post" action="/post/<%= post.post_id %>/delete?page=<%= page %>" method="post">
             <button type="submit">Delete</button>
            </form>
           <% } %>
@@ -60,8 +60,9 @@
          <a href="?page=<%= page + 1 %>">Next</a>
         <% } %>
       </div>
+      <% } else { %>
+        <p class="no-posts">There are no messages yet! <a href="/post/new">Create a new message</a></p>
       <% } %>
-
     </main>
   </body>
 </html>
