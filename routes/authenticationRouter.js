@@ -15,4 +15,6 @@ authenticationRouter.get("/log-in", authenticationController.getLogInForm);
 
 authenticationRouter.post("/log-in", authenticationController.authenticateWithLocal);
 
+authenticationRouter.get("/log-out", authenticationController.logOut);
+
 module.exports = authenticationRouter;
