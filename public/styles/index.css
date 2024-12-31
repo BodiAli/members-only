@@ -21,6 +21,10 @@ main {
   background-color: #865d5d;
   padding: 1rem;
   border-radius: 5px;
+  transition: filter 200ms;
+  &:hover {
+    filter: brightness(0.9);
+  }
 }
 
 .user-hero {
