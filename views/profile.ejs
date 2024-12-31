@@ -10,7 +10,22 @@
   <body>
     <%- include('partials/header') %>
     <%- include('partials/flash-messages') %>
-    <h1>Welcome <%= currentUser.first_name %></h1>
-    <a href="/">Home page</a>
+    <main>
+      <aside>
+        <h2 class="profile-name"><%= currentUser.first_name %> <%= currentUser.last_name %></h2>
+        <p class="profile-username"><span>Email:</span> <%= currentUser.username %></p>
+        <div class="profile-membership">
+          <p><%= currentUser.ismember ? 'You are a member' : 'You are not a member' %></p>
+          <a href="<%= currentUser.ismember ? '/member/remove' : '/member' %>"><%= currentUser.ismember ? 'Remove membership status' : 'Become a member' %></a>
+        </div>
+        <div class="profile-membership">
+          <p><%= currentUser.isadmin ? 'You are an admin' : 'You are not an admin' %></p>
+          <a href="<%= currentUser.isadmin ? '/admin/remove' : '/admin' %>"><%= currentUser.isadmin ? 'Remove admin status' : 'Become an admin' %></a>
+        </div>
+        <a href="/log-out">Log out</a>
+      </aside>
+
+      <a href="/">Home page</a>
+    </main>
   </body>
 </html>
