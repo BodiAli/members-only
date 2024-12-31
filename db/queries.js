@@ -31,3 +31,15 @@ exports.getPostCount = async () => {
   const { rows } = await pool.query("SELECT COUNT(*) FROM posts;");
   return Number.parseInt(rows[0].count, 10);
 };
+
+exports.updateMembership = async (userId) => {
+  await pool.query("UPDATE users SET ismember = true WHERE user_id = $1", [userId]);
+};
+
+exports.updateAdmin = async (userId) => {
+  await pool.query("UPDATE users SET isadmin = true WHERE user_id = $1", [userId]);
+};
+
+exports.deletePost = async (postId) => {
+  await pool.query("DELETE FROM posts WHERE post_id = $1", [postId]);
+};
