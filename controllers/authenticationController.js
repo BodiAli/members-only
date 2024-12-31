@@ -151,3 +151,10 @@ exports.authenticateWithLocal = [
     })(req, res);
   },
 ];
+
+exports.logOut = (req, res, next) => {
+  req.logOut((err) => {
+    if (err) return next(err);
+    return res.redirect("/");
+  });
+};
