@@ -5,6 +5,8 @@ exports.deletePost = [
   asyncHandler(async (req, res) => {
     await db.deletePost(req.params.id);
 
-    res.redirect(`/?page=${req.query.page || 1}`);
+    const referrer = req.get("Referrer") || "/";
+
+    res.redirect(referrer);
   }),
 ];
