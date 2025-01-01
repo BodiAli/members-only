@@ -10,3 +10,7 @@ exports.deletePost = [
     res.redirect(referrer);
   }),
 ];
+
+exports.getCreatePostPage = (req, res) => {
+  res.render("create-post");
+};
