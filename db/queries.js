@@ -22,9 +22,17 @@ exports.getAllPosts = async (limit, offset) => {
   return rows;
 };
 
-exports.getUserPosts = async (userId) => {
-  const { rows } = await pool.query("SELECT * FROM posts WHERE post_user_id = $1", [userId]);
+exports.getUserPosts = async (userId, limit, offset) => {
+  const { rows } = await pool.query(
+    "SELECT * FROM posts WHERE post_user_id = $1 ORDER BY post_added DESC LIMIT $2 OFFSET $3",
+    [userId, limit, offset]
+  );
   return rows;
+};
+
+exports.getUserPostsCount = async (userId) => {
+  const { rows } = await pool.query("SELECT COUNT(*) FROM posts WHERE post_user_id = $1", [userId]);
+  return Number.parseInt(rows[0].count, 10);
 };
 
 exports.getPostCount = async () => {
