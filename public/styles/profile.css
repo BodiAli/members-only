@@ -8,6 +8,7 @@ aside {
   grid-template-columns: 1fr;
   gap: 1rem;
   padding: 1rem;
+  align-self: start;
 }
 
 .profile-name {
@@ -32,4 +33,77 @@ aside {
 
 .profile-membership > a {
   color: black;
+}
+
+.user-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.post {
+  background-color: #ffe4e3;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.delete-post {
+  align-self: end;
+}
+
+.delete-post > button {
+  background-color: crimson;
+  border: none;
+  border-radius: 5px;
+  padding: 0.3rem 0.6rem;
+  transition: filter 200ms;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(0.8);
+  }
+}
+
+.post-author {
+  font-size: 1.2rem;
+}
+
+.post-title {
+  font-size: 1.1rem;
+}
+
+.post-time {
+  align-self: end;
+}
+
+.pagination {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.pagination a {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #007bff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: filter 200ms;
+  &:hover {
+    filter: brightness(0.8);
+  }
+}
+
+.pagination a.active {
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+}
+
+.no-posts {
+  text-align: center;
+  font-size: 1.3rem;
 }
