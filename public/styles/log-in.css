@@ -22,7 +22,6 @@ main {
 form {
   display: grid;
   grid-template-columns: 1fr;
-  margin: 0 22rem;
   gap: 10px;
 }
 
@@ -101,4 +100,10 @@ hr {
   color: crimson;
   font-size: 1.1rem;
   font-weight: 500;
+}
+
+@media (min-width: 1000px) {
+  form {
+    margin: 0 22rem;
+  }
 }
