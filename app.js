@@ -1,4 +1,6 @@
+require("./instrument");
 require("dotenv").config();
+const Sentry = require("@sentry/node");
 const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
@@ -50,9 +52,10 @@ app.use("/", memberShipRouter);
 app.use("/profile", profileRouter);
 app.use("/post", postsRouter);
 
+Sentry.setupExpressErrorHandler(app);
+
 app.use((err, req, res, _next) => {
-  console.error(err);
-  res.status(500).send(err);
+  res.status(500).res.end(`${res.sentry}\n`);
 });
 
 const port = process.env.PORT || 3000;
