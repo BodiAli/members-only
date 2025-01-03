@@ -14,8 +14,8 @@ const SQL = `
 
   CREATE TABLE IF NOT EXISTS posts (
     post_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    post_title VARCHAR(255),
-    post_text TEXT,
+    post_title VARCHAR(255) NOT NULL,
+    post_text TEXT NOT NULL,
     post_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP(0),
     post_user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
   );
