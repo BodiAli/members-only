@@ -1,0 +1,24 @@
+main {
+  padding: 1rem;
+}
+
+main > p {
+  font-size: 2rem;
+}
+
+footer {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem;
+}
+
+footer > p {
+  font-size: 1.5rem;
+}
+
+footer img {
+  width: 40px;
+}
