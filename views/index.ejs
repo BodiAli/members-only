@@ -11,18 +11,20 @@
     <%- include('partials/header') %>
     <%- include('partials/flash-messages') %>
     <main>
-      <section class="member-ship">
-        <% if (!locals.currentUser?.ismember) { %>
-          <a href="/member">Become a member</a>
-        <% } else { %>
-          <p>You are a member!</p>
+      <% if (locals.currentUser) { %>
+        <section class="member-ship">
+          <% if (!locals.currentUser?.ismember) { %>
+            <a href="/member">Become a member</a>
+          <% } else { %>
+            <p>You are a member!</p>
+            <% } %>
+          <% if (!locals.currentUser?.isadmin) { %>
+            <a href="/admin">Become an admin</a>
+          <% } else { %>
+            <p>You are an admin!</p>
           <% } %>
-        <% if (!locals.currentUser?.isadmin) { %>
-          <a href="/admin">Become an admin</a>
-        <% } else { %>
-          <p>You are an admin!</p>
-        <% } %>
-      </section>
+        </section>
+      <% } %>
        <section class="user-hero">
         <% if (locals.currentUser) { %>
          <p>Welcome <a href="/profile"><%= currentUser.first_name %> <%= currentUser.last_name %></a></p>
@@ -61,7 +63,7 @@
         <% } %>
       </div>
       <% } else { %>
-        <p class="no-posts">There are no messages yet! <a href="/post/new">Create a new message</a></p>
+        <p class="no-posts">There are no posts yet! <%- locals.currentUser ? '<a href="/post/new">Create a new post</a>' : '' %></p>
       <% } %>
     </main>
   </body>
