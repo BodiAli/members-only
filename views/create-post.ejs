@@ -9,8 +9,23 @@
 </head>
 <body>
   <%- include('partials/header') %>
+  <%- include('partials/flash-messages') %>
   <main>
-    <h1>CREATE A NEW POST!!!!!!</h1>
+    <h2>Create a new post</h2>
+    <section class="create-post-container">
+      <form action="/post/create" method="post">
+        <%- include('partials/errors') %>
+        <label>
+          Title
+          <input type="text" name="title" required maxlength="255">
+        </label>
+        <label>
+          Text
+          <textarea name="postText" required></textarea>
+        </label>
+        <button type="submit">Create post</button>
+      </form>
+    </section>
   </main>
 </body>
 </html>
