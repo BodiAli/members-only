@@ -22,3 +22,9 @@ footer > p {
 footer img {
   width: 40px;
 }
+
+@media (max-width: 500px) {
+  main > p {
+    line-height: 1.1;
+  }
+}
