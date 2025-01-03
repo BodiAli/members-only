@@ -55,7 +55,7 @@ app.use("/post", postsRouter);
 Sentry.setupExpressErrorHandler(app);
 
 app.use((err, req, res, _next) => {
-  res.status(500).res.end(`${res.sentry}\n`);
+  res.status(500).send(`${res.sentry}\n`);
 });
 
 const port = process.env.PORT || 3000;
