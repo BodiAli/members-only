@@ -26,17 +26,6 @@
       </aside>
       <section class="user-posts">
         <% if (locals.userPosts.length > 0) { %>
-          <% userPosts.forEach(post => { %>
-            <div class="post">
-              <form class="delete-post" action="/post/<%= post.post_id %>/delete?page=<%= page %>" method="post">
-                <button type="submit">Delete</button>
-              </form>
-              <h2 class='post-author'><%= post.author %></h2>
-              <h3 class="post-title"><%= post.post_title %></h3>
-              <p class="post-text"><%= post.post_text %></p>
-              <p class="post-time"><%= post.post_added.toDateString() %>, <%= post.post_added.getHours() %>:<%= post.post_added.getMinutes() %>:<%= post.post_added.getSeconds() %></p>
-            </div>
-          <% }) %>
           <div class="pagination">
             <% if (page > 1) { %>
               <a href="?page=<%= page - 1 %>">Previous</a>
@@ -48,8 +37,19 @@
               <a href="?page=<%= page + 1 %>">Next</a>
             <% } %>
           </div>
+          <% userPosts.forEach(post => { %>
+            <div class="post">
+              <form class="delete-post" action="/post/<%= post.post_id %>/delete?page=<%= page %>" method="post">
+                <button type="submit">Delete</button>
+              </form>
+              <h2 class='post-author'><%= post.author %></h2>
+              <h3 class="post-title"><%= post.post_title %></h3>
+              <p class="post-text"><%= post.post_text %></p>
+              <p class="post-time"><%= post.post_added.toDateString() %>, <%= post.post_added.getHours() %>:<%= post.post_added.getMinutes() %>:<%= post.post_added.getSeconds() %></p>
+            </div>
+          <% }) %>
         <% } else { %>
-          <p class="no-posts">There are no messages yet! <a href="/post/new">Create a new message</a></p>
+          <p class="no-posts">You have no posts! <a href="/post/new">Create a new post</a></p>
         <% } %>%>
       </section>
     </main>
