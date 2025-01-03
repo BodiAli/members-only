@@ -99,7 +99,6 @@ aside > a {
   display: flex;
   gap: 5px;
   justify-content: center;
-  margin-top: 1rem;
 }
 
 .pagination a {
@@ -123,4 +122,10 @@ aside > a {
 .no-posts {
   text-align: center;
   font-size: 1.3rem;
+}
+
+@media (max-width: 450px) {
+  main {
+    grid-template-columns: 1fr;
+  }
 }
