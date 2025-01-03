@@ -11,6 +11,23 @@ aside {
   align-self: start;
 }
 
+aside > a {
+  color: #000;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+  background-color: #bc908f;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: filter 200ms ease;
+  cursor: pointer;
+  justify-self: start;
+  &:hover {
+    filter: brightness(0.8);
+  }
+}
+
 .profile-name {
   font-size: 2rem;
   font-family: serif;
