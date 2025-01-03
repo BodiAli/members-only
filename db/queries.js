@@ -52,6 +52,14 @@ exports.deletePost = async (postId) => {
   await pool.query("DELETE FROM posts WHERE post_id = $1", [postId]);
 };
 
+exports.createPost = async (title, text, userId) => {
+  await pool.query("INSERT INTO posts (post_title, post_text, post_user_id) VALUES ($1, $2, $3)", [
+    title,
+    text,
+    userId,
+  ]);
+};
+
 exports.removeMemberStatus = async (userId) => {
   await pool.query("UPDATE users SET ismember = false WHERE user_id = $1", [userId]);
 };
