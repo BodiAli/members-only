@@ -1,11 +1,11 @@
 <header>
   <h1>Members Only</h1>
   <div class="header-nav">
-    <a href="/" class="<%= currentPath === '/' ? 'current-page' : '' %>">Home</a>
-    <a href="/profile" class="<%= currentPath === '/profile' ? 'current-page' : '' %>">Profile</a>
-    <a href="/about" class="<%= currentPath === '/about' ? 'current-page' : '' %>">About</a>
     <% if (locals.currentUser) { %>
       <a href="/post/new" class="<%= currentPath === '/post/new' ? 'current-page' : '' %>">Create a new message</a>
     <% } %>
+    <a href="/" class="<%= currentPath === '/' ? 'current-page' : '' %>">Home</a>
+    <a href="/profile" class="<%= currentPath === '/profile' ? 'current-page' : '' %>">Profile</a>
+    <a href="/about" class="<%= currentPath === '/about' ? 'current-page' : '' %>">About</a>
   </div>
 </header>
