@@ -50,6 +50,11 @@ app.use("/", memberShipRouter);
 app.use("/profile", profileRouter);
 app.use("/post", postsRouter);
 
+app.use((err, req, res, _next) => {
+  console.error(err);
+  res.status(500).send(err);
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
