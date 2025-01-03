@@ -38,3 +38,7 @@ exports.getHomePage = [
     });
   }),
 ];
+
+exports.getAboutPage = (req, res) => {
+  res.render("about");
+};
